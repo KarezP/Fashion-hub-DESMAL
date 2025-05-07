@@ -27,6 +27,7 @@ const Home = () => {
 
     API.get("/items")
       .then((response) => {
+        console.log("Fetched data:", response.data); 
         setItems(response.data);
         setFilteredItems(response.data);
       })
@@ -97,7 +98,7 @@ const Home = () => {
         </div>
 
         <div className="product-grid">
-          {filteredItems.map((item) => {
+        {Array.isArray(filteredItems) && filteredItems.map((item) => {
             const isFavorited = favorites.some((fav) => fav.id === item.id);
 
             return (
