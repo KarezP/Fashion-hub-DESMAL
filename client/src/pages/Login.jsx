@@ -13,14 +13,17 @@ const Login = () => {
 
     try {
       const res = await API.post("/users/login", { email, password });
+
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setUser(res.data.user);
       setFeedback("Login successful!");
 
+      // Redirect efter kort delay
       setTimeout(() => {
         window.location.href = "/";
       }, 1000);
     } catch (err) {
+      console.error("Login failed:", err);
       const msg = err.response?.data?.error || "Login failed.";
       setFeedback(msg);
     }

@@ -1,10 +1,8 @@
 import mysql from "mysql2";
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "164339Yaris%&",
-  database: "fashion",
-});
+import dotenv from "dotenv";
+dotenv.config(); 
+
+const db = mysql.createConnection(process.env.DATABASE_URL); // Use env var set in Railway or locally
 
 db.connect((err) => {
   if (err) {

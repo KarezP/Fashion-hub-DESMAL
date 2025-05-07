@@ -12,15 +12,15 @@ const ItemDetail = () => {
   const [ratings, setRatings] = useState({});
 
   useEffect(() => {
-    const savedRatings =
-      JSON.parse(localStorage.getItem("productRatings")) || {};
+    const savedRatings = JSON.parse(localStorage.getItem("productRatings")) || {};
     setRatings(savedRatings);
-
-    fetch(`http://localhost:5000/api/items/${id}`)
+  
+    fetch(`https://fashion-backend-production-995e.up.railway.app/api/items/${id}`)
       .then((res) => res.json())
       .then((data) => setItem(data))
       .catch((err) => console.error("Error fetching item:", err));
   }, [id]);
+  
 
   const updateRating = (itemId, rating) => {
     setRatings((prev) => {
