@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL, // hämtar från Netlifys miljövariabel
+  baseURL: "https://fashion-backend-production-995e.up.railway.app/api",
 });
+
 
 export default API;
