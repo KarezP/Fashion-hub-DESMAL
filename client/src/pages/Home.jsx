@@ -42,6 +42,7 @@ const Home = () => {
       setFilteredItems(
         items.filter(
           (item) =>
+            item.category &&
             item.category.toLowerCase() === selectedCategory.toLowerCase()
         )
       );
