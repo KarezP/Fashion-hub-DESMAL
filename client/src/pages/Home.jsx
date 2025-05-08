@@ -26,18 +26,22 @@ const Home = () => {
 
   useEffect(() => {
     searchRef.current.focus();
-
+  
     API.get("/items")
       .then((response) => {
-        console.log("Fetched data:", response.data); 
-        setItems(response.data);
-        setFilteredItems(response.data);
+        console.log("Fetched data:", response.data);
+        if (Array.isArray(response.data)) {
+          setItems(response.data);
+          setFilteredItems(response.data);
+        } else {
+          setErrorMessage("Unexpected data format from API.");
+          console.error("API did not return an array:", response.data);
+        }
       })
       .catch(() => {
         setErrorMessage("Unable to fetch products. Try again later.");
       });
   }, []);
-
   useEffect(() => {
     if (selectedCategory === "All") {
       setFilteredItems(items);
