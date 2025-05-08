@@ -8,8 +8,6 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Home = () => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -26,22 +24,17 @@ const Home = () => {
 
   useEffect(() => {
     searchRef.current.focus();
-  
+
     API.get("/items")
       .then((response) => {
-        console.log("Fetched data:", response.data);
-        if (Array.isArray(response.data)) {
-          setItems(response.data);
-          setFilteredItems(response.data);
-        } else {
-          setErrorMessage("Unexpected data format from API.");
-          console.error("API did not return an array:", response.data);
-        }
+        setItems(response.data);
+        setFilteredItems(response.data);
       })
       .catch(() => {
         setErrorMessage("Unable to fetch products. Try again later.");
       });
   }, []);
+
   useEffect(() => {
     if (selectedCategory === "All") {
       setFilteredItems(items);
@@ -104,7 +97,7 @@ const Home = () => {
         </div>
 
         <div className="product-grid">
-        {Array.isArray(filteredItems) && filteredItems.map((item) => {
+          {filteredItems.map((item) => {
             const isFavorited = favorites.some((fav) => fav.id === item.id);
 
             return (
