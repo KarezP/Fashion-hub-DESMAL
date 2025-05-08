@@ -8,6 +8,8 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 
+
+
 const Home = () => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
